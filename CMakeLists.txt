@@ -2,16 +2,18 @@ cmake_minimum_required(VERSION 3.20)
 
 project(PPtest VERSION "1.0.2")
 
-include(GNUInstallDirs)
+file(DOWNLOAD "https://raw.githubusercontent.com/Petkr/PPcmake/main/PPcmake.cmake" "${CMAKE_BINARY_DIR}/PPcmake.cmake")
+include("${CMAKE_BINARY_DIR}/PPcmake.cmake")
 
-set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/vendor/${CMAKE_INSTALL_DATADIR}/cmake/")
+PPcmake_package("github.com" "Petkr" "PPcmake" "1.0.2")
+include(PPcmake)
 
-file(DOWNLOAD "https://github.com/Petkr/PPstyle/releases/download/1.0.9/PPstyle-1.0.9-Linux.tar.gz" "PPstyle.tar.gz")
-file(ARCHIVE_EXTRACT INPUT "PPstyle.tar.gz" DESTINATION "${CMAKE_CURRENT_LIST_DIR}/vendor")
+PPcmake_package("github.com" "Petkr" "PPstyle" "1.0.14")
+include(PPstyle)
 
-add_subdirectory(PPtest)
+PPcmake_add_subdirectory(PPtest)
 
-install(FILES "PPtest.cmake" DESTINATION "${CMAKE_INSTALL_DATADIR}/cmake/")
+PPcmake_install_file("${PPCMAKE_MODULE_PATH}/PPcmake.cmake")
+PPcmake_install_file("PPtest.cmake")
 
-set(CPACK_GENERATOR "TGZ")
-include(CPack)
+PPcmake_cpack()
