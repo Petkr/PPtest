@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.20)
 
-include(PPcmake)
+PPcmake_package("github.com" "Petkr" "PPcmake" "1.0.4")
 
 function(PPtest TARGET_NAME TEST_SOURCES F)
     add_custom_target("${TARGET_NAME}")

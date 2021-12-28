@@ -6,11 +6,10 @@ file(DOWNLOAD "https://raw.githubusercontent.com/Petkr/PPcmake/1.0.4/PPcmake.cma
 include("${CMAKE_BINARY_DIR}/PPcmake.cmake")
 
 PPcmake_package("github.com" "Petkr" "PPcmake" "1.0.4")
-PPcmake_package("github.com" "Petkr" "PPstyle" "1.0.14")
+PPcmake_package("github.com" "Petkr" "PPstyle" "1.0.15")
 
 PPcmake_add_subdirectory(PPtest)
 
-PPcmake_install_file("${PPCMAKE_MODULE_PATH}/PPcmake.cmake")
 PPcmake_install_file("PPtest.cmake")
 
 PPcmake_cpack()
